@@ -9,7 +9,7 @@ export const action: ActionFunction = async ({ request }) => {
   const email = formData.get("email");
 
   return json({
-    message: `Thanks for signup ${email}`,
+    message: `Thanks for signing up ${email}`,
   });
 };
 
@@ -19,7 +19,7 @@ export default function Index() {
   const isSubmitting = Boolean(transition.submission);
   return (
     <div className="grid min-h-screen place-items-center">
-      <div className="w-[90%] max-w-md rounded-md bg-zinc-100 p-4 dark:bg-zinc-800 md:p-12">
+      <div className="w-[90%] max-w-lg rounded-md bg-zinc-100 p-4 dark:bg-zinc-800 md:p-12">
         <h1 className="mb-2 text-center text-xl">Welcome to Remix</h1>
         <Form method="post">
           <div className="flex flex-col items-center gap-2 pt-4 sm:flex-row">
