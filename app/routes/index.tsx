@@ -19,8 +19,6 @@ export default function Index() {
   const transition = useTransition();
   const isSubmitting = Boolean(transition.submission);
 
-  console.log(transition);
-
   let formRef = useRef();
 
   useEffect(() => {
