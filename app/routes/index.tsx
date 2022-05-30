@@ -18,15 +18,14 @@ export default function Index() {
   const transition = useTransition();
   const isSubmitting = Boolean(transition.submission);
   return (
-    <div className="min-h-screen grid place-items-center">
-      <div className="bg-zinc-100 dark:bg-zinc-800 p-4 md:p-12 rounded-md">
-        <h1 className="text-center mb-2">Welcome to Remix</h1>
-        <div className=""></div>
+    <div className="grid min-h-screen place-items-center">
+      <div className="w-[90%] max-w-md rounded-md bg-zinc-100 p-4 dark:bg-zinc-800 md:p-12">
+        <h1 className="mb-2 text-center text-xl">Welcome to Remix</h1>
         <Form method="post">
-          <div className="flex gap-2 items-center pt-4">
-            <div className="relative">
+          <div className="flex flex-col items-center gap-2 pt-4 sm:flex-row">
+            <div className="relative w-full sm:w-auto">
               <input
-                className="peer placeholder-transparent appearance-none block w-full rounded-md py-2 px-3 leading-tight focus:outline-none border-2 border-gray-300 dark:border-gray-500 focus:ring-2 focus:ring-pink-500"
+                className="peer block w-full appearance-none rounded-md border-2 border-gray-300 py-2 px-3 leading-tight placeholder-transparent focus:outline-none focus:ring-2 focus:ring-pink-500 dark:border-gray-500"
                 id="email"
                 type="email"
                 name="email"
@@ -34,7 +33,7 @@ export default function Index() {
                 required
               />
               <label
-                className="absolute left-0 peer-placeholder-shown:left-5 -top-5 text-sm text-zinc-400 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-black/50 dark:peer-placeholder-shown:text-white/50 peer-focus:-top-5 peer-focus:left-0 peer-focus:text-sm peer-focus:text-zinc-600"
+                className="absolute left-0 -top-5 text-sm text-zinc-400 transition-all peer-placeholder-shown:left-5 peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-black/50 peer-focus:-top-5 peer-focus:left-0 peer-focus:text-sm peer-focus:text-zinc-600 dark:peer-placeholder-shown:text-white/50"
                 htmlFor="email"
               >
                 Email address
@@ -42,7 +41,7 @@ export default function Index() {
             </div>
             <button
               type="submit"
-              className="px-4 py-2 bg-pink-500 text-white hover:bg-pink-600 rounded-md font-medium inline-flex items-center gap-2"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-pink-500 px-4 py-2 font-medium text-white hover:bg-pink-600 sm:w-auto"
             >
               {isSubmitting ? (
                 <>
@@ -55,8 +54,8 @@ export default function Index() {
           </div>
         </Form>
         <p
-          className={`mt-6 text-sm text-center ${
-            data ? "" : "opacity-60 italic"
+          className={`mt-6 text-center text-sm ${
+            data ? "" : "italic opacity-60"
           }`}
         >
           {data ? data.message : "* No data is sent or stored"}
