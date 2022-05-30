@@ -2,6 +2,7 @@ import { json } from "@remix-run/node";
 import type { ActionFunction } from "@remix-run/node";
 import { Form, useActionData, useTransition } from "@remix-run/react";
 import { ClipLoader } from "react-spinners";
+import { useEffect, useRef } from "react";
 
 export const action: ActionFunction = async ({ request }) => {
   await new Promise((res) => setTimeout(res, 2000));
@@ -17,14 +18,26 @@ export default function Index() {
   const data = useActionData();
   const transition = useTransition();
   const isSubmitting = Boolean(transition.submission);
+
+  console.log(transition);
+
+  let formRef = useRef();
+
+  useEffect(() => {
+    if (transition.state !== "submitting") {
+      formRef.current?.reset();
+    }
+  }, [transition.state]);
+
   return (
     <div className="grid min-h-screen place-items-center">
       <div className="w-[90%] max-w-lg rounded-md bg-zinc-100 p-4 dark:bg-zinc-800 md:p-12">
         <h1 className="mb-2 text-center text-xl">Welcome to Remix</h1>
-        <Form method="post">
-          <div className="flex flex-col items-center gap-2 pt-4 sm:flex-row">
+        <Form ref={formRef} method="post">
+          <div className="flex flex-col items-center gap-2 pt-4 sm:flex-row sm:justify-center">
             <div className="relative w-full sm:w-auto">
               <input
+                disabled={transition.state === "submitting"}
                 className="peer block w-full appearance-none rounded-md border-2 border-gray-300 py-2 px-3 leading-tight placeholder-transparent focus:outline-none focus:ring-2 focus:ring-pink-500 dark:border-gray-500"
                 id="email"
                 type="email"
